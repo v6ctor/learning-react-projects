@@ -1,0 +1,37 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#nav__img {
+  width: 25%;
+  height: auto;
+}
+
+.main__search-bar {
+
+}
+
+#main__search-bar__input {
+  width: 25%;
+  height: 35px;
+  background-color: white;
+  outline: none;
+  border-radius: 4px;
+  border-color: transparent;
+  color: black;
+  box-shadow: 0px 0px 0px 1px black;
+}
+
+#main__search-bar__input:hover {
+  box-shadow: 0 0 0 2px black;
+}
