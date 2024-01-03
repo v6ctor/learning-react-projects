@@ -8,6 +8,7 @@ class Card extends React.Component {
     console.log('/' + img)
     return (
       <section className='card'>
+        {this.props.openSpots === 0 && <div className="card__badge">SOLD OUT</div>}
         <img className='card__img-person' src={'/' + img}></img>
         <div className='card__information'>
           <div className='card__information--ratings'>
@@ -35,6 +36,7 @@ Card.propTypes = {
   location: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  openSpots: PropTypes.number.isRequired,
 }
 
 export default Card
