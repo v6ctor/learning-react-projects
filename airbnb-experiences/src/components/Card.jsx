@@ -13,7 +13,7 @@ class Card extends React.Component {
           <div className='card__information--ratings'>
             <img className='card__information--ratings__star' src={star}></img>
             <p className='card__information--ratings__text'>{this.props.rating}
-              <span> {this.props.reviewCount} &#183; {this.props.country}</span>
+              <span> ({this.props.reviewCount}) &#183; {this.props.location}</span>
             </p>
           </div>
           <div className='card__information--activity'>
@@ -30,9 +30,9 @@ class Card extends React.Component {
 
 Card.propTypes = {
   img: PropTypes.string.isRequired,
-  rating: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
   reviewCount: PropTypes.number.isRequired,
-  country: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
 }

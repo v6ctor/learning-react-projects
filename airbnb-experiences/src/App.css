@@ -35,17 +35,30 @@ section > p {
 }
 
 .card {
-  margin-top: 45px;
+  margin-top: 30px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+}
+
+.cards-list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  overflow-x: auto;
 }
 
 .card__img-person {
-  width: 150px;
-  height: auto;
+  width: 175px;
+  height: 200px;
+  border-radius: 9px;
 }
 
 .card__information--ratings {
   display: flex;
   gap: 4px;
+  margin-top: 4px;
 }
 
 .card__information--ratings__text {
@@ -69,12 +82,15 @@ section > p {
 .card__information--activity, .card__information--activity__text {
   margin: 0;
   font-size: 12px;
-  margin-top: 5px;
+  margin-top: 2px;
   margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card__information--activity__pricing > span {
   font-weight: 600;
+  margin-top: auto;
 }
 
 #nav__airbnb-logo {
