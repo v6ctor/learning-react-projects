@@ -17,11 +17,7 @@ nav {
   height: auto;
 }
 
-.main__search-bar {
-
-}
-
-#main__search-bar__input {
+.main__search-bar__input {
   width: 25%;
   height: 35px;
   background-color: white;
