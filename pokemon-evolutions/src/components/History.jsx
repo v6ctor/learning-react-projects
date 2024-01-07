@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 export default function History(props) {
   const elements = props.items.map((item) => (
-    <div key={item.id}>
+    <div key={item.id} className='item'>
       <div className="item__title">
         {item.pokemon}
       </div>
@@ -10,8 +10,12 @@ export default function History(props) {
   ))
   return (
     <section className="history-bar">
-      <h1>Search History</h1>
-      {elements}
+      <div className='history-bar__title'>
+        <h1>Search History</h1>
+      </div>  
+      <div className="history-bar__scroll-wrapper">
+        {elements}
+      </div>
     </section>
   )
 }

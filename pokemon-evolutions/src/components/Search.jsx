@@ -2,10 +2,14 @@ import PropTypes from 'prop-types'
 
 export default function Search(props) {
   return (
-    <section>
-      <label htmlFor='main__search-bar__input'>Pokemon to Evolve</label>
-      <input type="text" className="main__search-bar__input" placeholder="ditto" onChange={props.searchChange}></input>
-      <button onClick={props.searchClick}></button>
+    <section className='search'>
+      <div className='search-bar__wrapper'>
+        <label htmlFor='search-bar__input'>Pokemon to Evolve</label>
+        <div className='search-bar'>
+          <input type="text" className="search-bar__input" placeholder="ditto" onChange={props.searchChange}></input>
+          <button className='search__button'onClick={props.searchClick}>Evolve</button>
+        </div>
+      </div>
     </section>
   )
 }

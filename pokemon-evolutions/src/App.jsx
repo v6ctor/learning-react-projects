@@ -46,7 +46,7 @@ function App() {
   return (
    <>
     <Navbar />
-    <main>
+    <main className='main'>
       <History 
         items={items}
       />
@@ -54,6 +54,7 @@ function App() {
         searchChange={handleSearchChange}
         searchClick={handleSearchSubmit}
       />
+      <div>Image goes here</div>
     </main>
    </>
   )
