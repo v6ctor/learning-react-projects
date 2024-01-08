@@ -14,17 +14,18 @@ export default function History(props) {
         <h1>Search History</h1>
       </div>  
       <div className="history-bar__scroll-wrapper">
-        {elements}
+        <div className="history-bar__flex-container">
+          {elements}
+        </div>
       </div>
     </section>
   )
 }
 
 History.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      pokemon: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-}
+  items: PropTypes.arrayOf(PropTypes.shape({
+    pokemon: PropTypes.string.isRequired,
+    data: PropTypes.object.isRequired,
+    id: PropTypes.string.isRequired,
+  })),
+};

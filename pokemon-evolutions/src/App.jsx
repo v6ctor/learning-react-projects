@@ -12,36 +12,53 @@ function App() {
   const [history, setHistory] = useState(
     () => JSON.parse(localStorage.getItem("pokemonHistory")) || []
   )
+  const [currentPokemon, setCurrentPokemon] = useState("")
 
   const handleSearchChange = (event) => {
     const { value } = event.target
-    console.log(value)
     setPokemonName(value)
   }
 
   const handleSearchSubmit = async () => {
-    try {
-      // Easiest response to consume at the moment
-      const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon-species/${pokemonName}/`
-        )
-
-      if (response.data.evolution_chain.url) {
-        setHistory(prevHistory => ([...prevHistory, pokemonName]))
+    if (history.findIndex((entry) => entry[0] === pokemonName) === -1) {
+      try {
+        const response = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon-species/${pokemonName}/`
+        );
+  
+        if (response.data.evolution_chain.url) {
+          try {
+            const chainResponse = await axios.get(
+              response.data.evolution_chain.url
+            );
+  
+            setHistory((prevHistory) => [
+              ...prevHistory,
+              [pokemonName, chainResponse.data],
+            ]);
+            setCurrentPokemon(chainResponse.data);
+          } catch (error) {
+            console.error(`ERROR: API Request Failed for Evolution Chain`);
+          }
+        }
+      } catch (error) {
+        console.error(`ERROR: API Request Failed for ${pokemonName}`);
+        window.alert("Please enter a valid Pokemon name");
       }
-    } catch (error) {
-      console.error(`ERROR: API Request Failed on ${pokemonName}`)
-      window.alert("Please enter a valid Pokemon name")
+    } else {
+      setCurrentPokemon(history[history.findIndex((entry) => entry[0] === pokemonName)])
     }
-    
-  }
+  };
 
   useEffect(() => {
-    localStorage.setItem("pokemonHistory", JSON.stringify([...history]))
+    localStorage.setItem("pokemonHistory", JSON.stringify(history))
   }, [history])
 
   // chore: Nanoid works but would rather use pokemon ID for key
-  const items = history ? history.map((pokemon) => ({ pokemon, id: nanoid() })) : []
+  const items = history ? history.map((pokemon) => ({ pokemon: pokemon[0], data: pokemon[1], id: nanoid()})) : []
+  const pokemon = currentPokemon ? currentPokemon : "Nothing to see here..."
+
+  console.log(items)
 
   return (
    <>
@@ -50,11 +67,21 @@ function App() {
       <History 
         items={items}
       />
-      <Search 
-        searchChange={handleSearchChange}
-        searchClick={handleSearchSubmit}
-      />
-      <div>Image goes here</div>
+      <div className='results'>
+        <div className='results__title'>
+          <h1>Evolution Chain</h1>
+        </div>
+        <div className='results__content'>
+          <div className='result__content__text'>
+            {JSON.stringify(pokemon)}
+          </div>
+        </div>
+        <Search 
+          searchChange={handleSearchChange}
+          searchClick={handleSearchSubmit}
+        />
+      </div>
+      <div className='results__img'>Image goes here</div>
     </main>
    </>
   )
