@@ -8,7 +8,7 @@ How to setup:
 1. Install nodeJS, clone directory, run command 'npm i' inside directory
 2. Run command 'npm run dev' to launch localhost
 
-#To-do
+# To-do
 [] Fix main content display (img, name, misc. information about each pokemon in ev. chain)
 [] Add img to every search
 [] Add ability to click on search history items, delete items
