@@ -6,7 +6,7 @@ Fetches and displays a Pokemon's evolution chain with PokeAPI and caches data to
 
 How to setup:
 1. Install nodeJS, clone directory, run command 'npm i' inside directory
-2. Run command 'npm run dev' to launch localhost
+2. Inside directory run command 'npm run dev' to launch localhost
 
 # To-do
 - [ ] Fix main content display (img, name, misc. information about each pokemon in ev. chain)
