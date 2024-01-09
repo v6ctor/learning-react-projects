@@ -53,6 +53,7 @@ nav {
 .search-bar__wrapper {
   position: relative;
   display: inline-block;
+  text-align: center;
 }
 
 .search-bar__input__title {

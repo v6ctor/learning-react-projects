@@ -26,6 +26,7 @@ History.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape({
     pokemon: PropTypes.string.isRequired,
     data: PropTypes.object.isRequired,
+    chainedData: PropTypes.array.isRequired,
     id: PropTypes.string.isRequired,
   })),
 };

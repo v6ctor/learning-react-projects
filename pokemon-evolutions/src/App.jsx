@@ -34,17 +34,19 @@ function App() {
             );
             const evolutionsList = []
             findEvolutions(chainResponse.data, evolutionsList)
-            const evolutionURLs = evolutionsList.map((evolution) => {
-              console.log(evolution.species.name)
+            const evolutionURLs = evolutionsList.map(async (evolution) => {
+              const response = await axios.get((evolution.species.url).replace("-species", ""))
+              return response.data
             })
-  
+            const resolvedEvolutions = await Promise.all(evolutionURLs)
+      
             setHistory((prevHistory) => [
               ...prevHistory,
-              [pokemonName, chainResponse.data],
+              [pokemonName, chainResponse.data, resolvedEvolutions],
             ]);
             setCurrentPokemon(chainResponse.data);
           } catch (error) {
-            console.error(`ERROR: API Request Failed for Evolution Chain`);
+            console.error(error);
           }
         }
       } catch (error) {
@@ -61,10 +63,8 @@ function App() {
   }, [history])
 
   // chore: Nanoid works but would rather use pokemon ID for key
-  const items = history ? history.map((pokemon) => ({ pokemon: pokemon[0], data: pokemon[1], id: nanoid()})) : []
+  const items = history ? history.map((pokemon) => ({ pokemon: pokemon[0], data: pokemon[1], chainedData: pokemon[2], id: nanoid()})) : []
   const pokemon = currentPokemon ? currentPokemon : "Nothing to see here..."
-
-  console.log(items)
 
   return (
    <>
