@@ -4,6 +4,7 @@ import History from './components/History'
 import Search from './components/Search'
 import { useEffect, useState } from 'react'
 import { nanoid } from 'nanoid'
+import findEvolutions from './utils/Evolutions'
 import axios from 'axios'
 
 function App() {
@@ -31,6 +32,11 @@ function App() {
             const chainResponse = await axios.get(
               response.data.evolution_chain.url
             );
+            const evolutionsList = []
+            findEvolutions(chainResponse.data, evolutionsList)
+            const evolutionURLs = evolutionsList.map((evolution) => {
+              console.log(evolution.species.name)
+            })
   
             setHistory((prevHistory) => [
               ...prevHistory,

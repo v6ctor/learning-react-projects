@@ -7,7 +7,7 @@ export default function Search(props) {
         <label htmlFor='search-bar__input' className='search-bar__input__title'>Pok&#233;mon to Evolve</label>
         <div className='search-bar'>
           <input type="text" className="search-bar__input" placeholder="ditto" onChange={props.searchChange}></input>
-          <button className='search__button'onClick={props.searchClick}>Evolve</button>
+          <button className='search__button'onClick={props.searchClick}>Submit</button>
         </div>
       </div>
     </section>
