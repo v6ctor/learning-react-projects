@@ -1,13 +1,22 @@
 import PropTypes from 'prop-types'
 
 export default function History(props) {
-  const elements = props.items.map((item) => (
-    <div key={item.id} className='item'>
-      <div className="item__title">
-        {item.pokemon}
+  const elements = props.items.map((item) => {
+    let itemIMG = ""
+    for (const index in item.chainedData) {
+      if (item.chainedData[index].name === item.pokemon) {
+        itemIMG = item.chainedData[index].sprites.front_default
+      }
+    }
+      return (
+        <div key={item.id} className='item'>
+          <img src={itemIMG}></img>
+        <div className="item__title">
+          {item.pokemon}
+        </div>
       </div>
-    </div>
-  ))
+      )
+    })
   return (
     <section className="history-bar">
       <div className='history-bar__title'>
