@@ -16,7 +16,7 @@ function App() {
 
   const handleSearchChange = (event) => {
     const { value } = event.target
-    setPokemonName(value)
+    setPokemonName(value.toLowerCase())
   }
 
   const handleSearchSubmit = async () => {
